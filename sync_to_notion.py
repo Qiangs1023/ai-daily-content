@@ -55,7 +55,7 @@ def push_to_notion(file_path):
                 "object": "block",
                 "type": "heading_2",
                 "heading_2": {
-                    "rich_text": [{"type": "text", "text": {"content": "🤖 AI 内容摘要"}}]
+                    "rich_text": [{"type": "text", "text": {"content": "🤖 内容摘要"}}]
                 }
             },
             {
