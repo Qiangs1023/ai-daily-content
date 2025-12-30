@@ -5,7 +5,7 @@ on:
     branches:
       - main
     paths:
-      - 'daily/**' # 监听 daily 文件夹的变化
+      - 'daily/**'
 
 jobs:
   notion-sync:
@@ -24,18 +24,17 @@ jobs:
       - name: Install Dependencies
         run: pip install requests
 
-      - name: Detect New Files and Sync
+      - name: Sync to Notion
         env:
           NOTION_TOKEN: ${{ secrets.NOTION_TOKEN }}
           NOTION_DATABASE_ID: ${{ secrets.NOTION_DATABASE_ID }}
         run: |
           # 仅获取本次推送中新增（Added）的文件
-          # 注意：如果是直接在网页端创建文件，这个 diff 命令依然有效
           ADDED_FILES=$(git diff --name-only --diff-filter=A HEAD^ HEAD | grep '^daily/.*\.md$' || true)
           
           if [ -z "$ADDED_FILES" ]; then
             echo "没有发现新增的日报文件。"
           else
-            echo "发现新文件并准备同步: $ADDED_FILES"
+            echo "同步中: $ADDED_FILES"
             python sync_to_notion.py $ADDED_FILES
           fi
