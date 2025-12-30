@@ -76,7 +76,7 @@ def push_to_notion(file_path):
         "children": notion_blocks # 直接把解析出来的所有块塞进去
     }
     
-    response = requests.post("[https://api.notion.com/v1/pages](https://api.notion.com/v1/pages)", headers=headers, json=data)
+   response = requests.post("https://api.notion.com/v1/pages", headers=headers, json=data)
     if response.status_code == 200:
         print(f"✅ 全格式同步成功: {file_name}")
     else:
