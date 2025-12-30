@@ -94,7 +94,7 @@ def push_to_notion(file_path):
     data = {
         "parent": {"database_id": DATABASE_ID},
         "properties": {
-            "Name": {"title": [{"text": {"content": f"AI日报 - {file_name}"}}]},
+            "Name": {"title": [{"text": {"content": f"KYinsight {file_name}"}}]},
             "Date": {"date": {"start": datetime.now().strftime("%Y-%m-%d")}},
             "Link": {"url": file_url}
         },
